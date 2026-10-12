@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sweden's grid batteries</title>
+<meta name="description" content="Official statistics on grid-connected battery storage in Sweden, 2024–2025, from Statistics Sweden and the Swedish Energy Agency.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4F7; --ink:#0E2A47; --ink-soft:#4A5E75; --rule:#C9D2DC;
+  --charge:#F2B705; --charge-ink:#0E2A47; --past:#9AAABB; --cell-gap:#F2F4F7;
+  --shell:#0E2A47;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --paper:#0E2A47; --ink:#F2F4F7; --ink-soft:#AFC0D2; --rule:#2B4867;
+    --past:#5E7894; --cell-gap:#0E2A47; --shell:#F2F4F7; }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.55 Barlow,system-ui,sans-serif}
+main{max-width:46rem;margin:0 auto;padding:3.5rem 1rem 4rem}
+h1,h2,.num{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:600;letter-spacing:-.005em}
+h1{font-size:clamp(2.4rem,7vw,4rem);line-height:1;margin:0 0 1rem}
+h2{font-size:1.75rem;line-height:1.1;margin:3.5rem 0 .5rem}
+p{margin:0 0 1rem;max-width:62ch}
+.lede{font-size:1.2rem;color:var(--ink-soft);max-width:54ch}
+a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--charge);outline-offset:3px;border-radius:2px}
+
+/* The battery: the one memorable element */
+.packs{margin:2.75rem 0 1rem;display:grid;gap:1.75rem}
+.pack{display:grid;grid-template-columns:3.2rem 1fr;align-items:center;gap:.75rem}
+.pack .yr{font:600 1.5rem/1 "Barlow Condensed",sans-serif;color:var(--ink-soft)}
+.pack.now .yr{color:var(--ink)}
+.cell-row{position:relative;display:flex;align-items:center}
+.shell{display:flex;gap:3px;padding:4px;border:3px solid var(--shell);border-radius:7px;height:4.25rem;min-width:0;transition:width 900ms cubic-bezier(.2,.7,.2,1)}
+.nub{width:7px;height:1.6rem;background:var(--shell);border-radius:0 3px 3px 0;flex:none}
+.seg{height:100%;border-radius:2px;background:var(--past);min-width:0}
+.now .seg{background:var(--charge)}
+.seg + .seg{opacity:.85}.seg + .seg + .seg{opacity:1}
+.readout{margin-left:.85rem;white-space:nowrap}
+.readout .num{display:block;font-size:2rem;line-height:1}
+.readout small{color:var(--ink-soft);font-size:.9rem}
+.key{color:var(--ink-soft);font-size:.95rem;margin:.25rem 0 0 4rem}
+@media (prefers-reduced-motion: reduce){.shell{transition:none}}
+@media (max-width:520px){
+  .pack{grid-template-columns:1fr}
+  .cell-row{flex-wrap:wrap;row-gap:.5rem}
+  .readout{margin-left:0;width:100%}
+  .key{margin-left:0}
+}
+
+/* Size breakdown */
+.sizes{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;margin-top:1rem}
+.sizes th,.sizes td{text-align:right;padding:.6rem .5rem;white-space:nowrap;border-bottom:1px solid var(--rule);vertical-align:middle}
+.sizes th:first-child,.sizes td:first-child{text-align:left;padding-left:0;white-space:normal}
+.sizes thead th{font-weight:500;color:var(--ink-soft);font-size:.95rem}
+.sizes tbody tr:last-child td{border-bottom:2px solid var(--ink);}
+.sizes tfoot td{font-weight:500;border-bottom:none}
+.sizes .bar{width:34%}
+.mini{display:block;height:.6rem;border-radius:2px;margin:.2rem 0}
+.mini.p{background:var(--past)}.mini.c{background:var(--charge)}
+.up{color:var(--ink)}
+.switch{display:inline-flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-top:.25rem}
+.switch button{font:500 .95rem Barlow,sans-serif;background:none;color:var(--ink);border:0;padding:.4rem .9rem;cursor:pointer}
+.switch button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+@media (max-width:520px){.sizes .bar{display:none}.sizes th,.sizes td{padding:.55rem .3rem;font-size:.95rem}}
+
+.notes{border-top:1px solid var(--rule);margin-top:3.5rem;padding-top:1.5rem;color:var(--ink-soft);font-size:.95rem}
+.notes p{max-width:68ch}
+.notes h2{color:var(--ink);font-size:1.35rem;margin-top:0}
+footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Sweden's grid batteries doubled in 2025</h1>
+  <p class="lede" id="lede">Grid-connected batteries in Sweden grew from 551 MW to 1,128 MW in one year, according to official statistics. Most of the growth came from large battery parks.</p>
+
+  <div class="packs" role="img" aria-label="Battery power capacity: 551 MW in 2024 and 1,128 MW in 2025">
+    <div class="pack" id="p2024">
+      <span class="yr">2024</span>
+      <div class="cell-row"><div class="shell"></div><div class="nub"></div>
+        <div class="readout"><span class="num"></span><small></small></div></div>
+    </div>
+    <div class="pack now" id="p2025">
+      <span class="yr">2025</span>
+      <div class="cell-row"><div class="shell"></div><div class="nub"></div>
+        <div class="readout"><span class="num"></span><small></small></div></div>
+    </div>
+  </div>
+  <p class="key">Each battery's length shows rated power. The three cells are, from left, batteries under 1 MWh, 1–10 MWh, and over 10 MWh.</p>
+
+  <h2>Where the growth came from</h2>
+  <p>Batteries holding more than 10 MWh each — mostly the large parks built to balance the grid — went from 280 MW to 666 MW. No single battery in the statistics held more than 100 MWh by the end of 2025.</p>
+  <div class="switch" role="group" aria-label="Show values as">
+    <button type="button" data-m="power_mw" aria-pressed="true">Power (MW)</button>
+    <button type="button" data-m="energy_mwh" aria-pressed="false">Energy (MWh)</button>
+  </div>
+  <table class="sizes" id="sizes">
+    <thead><tr><th scope="col">Battery size</th><th scope="col">2024</th><th scope="col">2025</th><th scope="col">Change</th><th scope="col" class="bar"><span class="visually-hidden">Comparison</span></th></tr></thead>
+    <tbody></tbody>
+    <tfoot></tfoot>
+  </table>
+
+  <section class="notes">
+    <h2>About the numbers</h2>
+    <p>The figures come from the table <em>Grid connected batteries by storage capacity</em> (TAB6631), published by Statistics Sweden for the Swedish Energy Agency and last updated 8 October 2026. Size classes group batteries by how much energy each one stores.</p>
+    <p>Statistics Sweden notes that both power and storage capacity are likely underreported, since this is a new and fast-growing area. Treat the totals as a minimum. Class values may not add up to the total because of rounding.</p>
+    <p>The statistics do not name individual sites. Batteries that came online in 2026, such as the 70 MW / 160 MWh park in Ånge, are not included yet.</p>
+    <p><a href="data/scb-tab6631.csv" download>Download the data (CSV)</a> or <a href="https://www.statistikdatabasen.scb.se/goto/en/ssd/Batterier">Open the table at Statistics Sweden</a></p>
+  </section>
+  <footer>Source: Statistics Sweden (SCB) and the Swedish Energy Agency, table TAB6631.</footer>
+</main>
+
+<script id="data" type="application/json">
+{"2024":{"Below 1 MWh":[87,99],"1 to 10 MWh":[185,182],"More than 10 to 100 MWh":[280,286],"More than 100 MWh":[0,0],"Total":[551,567]},
+ "2025":{"Below 1 MWh":[230,273],"1 to 10 MWh":[232,230],"More than 10 to 100 MWh":[666,671],"More than 100 MWh":[0,0],"Total":[1128,1172]}}
+</script>
+<script>
+(function(){
+  const D = JSON.parse(document.getElementById('data').textContent);
+  const CLASSES = ['Below 1 MWh','1 to 10 MWh','More than 10 to 100 MWh','More than 100 MWh'];
+  const nf = new Intl.NumberFormat('en');
+  const idx = {power_mw:0, energy_mwh:1};
+  const unit = {power_mw:'MW', energy_mwh:'MWh'};
+
+  // Batteries: width proportional to total MW; cells by class.
+  const maxMW = D['2025'].Total[0];
+  function drawPacks(animate){
+    ['2024','2025'].forEach(y=>{
+      const p = document.getElementById('p'+y);
+      const shell = p.querySelector('.shell');
+      const row = p.querySelector('.cell-row');
+      const avail = row.clientWidth - (window.innerWidth <= 520 ? 12 : 150);
+      const w = Math.max(60, avail * D[y].Total[0] / maxMW);
+      shell.innerHTML = '';
+      CLASSES.forEach(c=>{
+        const v = D[y][c][0]; if(!v) return;
+        const s = document.createElement('span'); s.className='seg';
+        s.style.flex = v + ' 1 0'; s.title = c + ': ' + nf.format(v) + ' MW';
+        shell.appendChild(s);
+      });
+      if(animate){ shell.style.width = '24px'; requestAnimationFrame(()=>requestAnimationFrame(()=>{shell.style.width = w+'px';})); }
+      else shell.style.width = w+'px';
+      p.querySelector('.num').textContent = nf.format(D[y].Total[0]) + ' MW';
+      p.querySelector('small').textContent = nf.format(D[y].Total[1]) + ' MWh stored';
+    });
+  }
+
+  function pct(a,b){ if(!a) return b ? 'new' : '—'; const r=(b-a)/a*100; return (r>=0?'+':'') + Math.round(r) + '%'; }
+  function drawTable(m){
+    const i = idx[m];
+    const max = Math.max(...CLASSES.map(c=>Math.max(D['2024'][c][i], D['2025'][c][i])));
+    const tb = document.querySelector('#sizes tbody'); tb.innerHTML='';
+    CLASSES.forEach(c=>{
+      const a=D['2024'][c][i], b=D['2025'][c][i];
+      const tr=document.createElement('tr');
+      tr.innerHTML = '<td></td><td></td><td></td><td></td><td class="bar"><span class="mini p"></span><span class="mini c"></span></td>';
+      tr.cells[0].textContent=c; tr.cells[1].textContent=nf.format(a)+' '+unit[m];
+      tr.cells[2].textContent=nf.format(b)+' '+unit[m]; tr.cells[3].textContent=pct(a,b);
+      const bars=tr.querySelectorAll('.mini'); bars[0].style.width=(max? a/max*100:0)+'%'; bars[1].style.width=(max? b/max*100:0)+'%';
+      tb.appendChild(tr);
+    });
+    const a=D['2024'].Total[i], b=D['2025'].Total[i];
+    document.querySelector('#sizes tfoot').innerHTML='<tr><td>Total</td><td></td><td></td><td></td><td class="bar"></td></tr>';
+    const f=document.querySelector('#sizes tfoot tr');
+    f.cells[1].textContent=nf.format(a)+' '+unit[m]; f.cells[2].textContent=nf.format(b)+' '+unit[m]; f.cells[3].textContent=pct(a,b);
+  }
+
+  document.querySelectorAll('.switch button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.switch button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+    drawTable(b.dataset.m);
+  }));
+
+  drawPacks(true); drawTable('power_mw');
+  let t; window.addEventListener('resize',()=>{clearTimeout(t); t=setTimeout(()=>drawPacks(false),120);});
+})();
+</script>
+<style>.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>
+</body>
+</html>

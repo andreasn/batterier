@@ -1,0 +1,11 @@
+year,size_class,power_mw,energy_mwh
+2024,Below 1 MWh,87,99
+2024,1 to 10 MWh,185,182
+2024,More than 10 to 100 MWh,280,286
+2024,More than 100 MWh,0,0
+2024,Total,551,567
+2025,Below 1 MWh,230,273
+2025,1 to 10 MWh,232,230
+2025,More than 10 to 100 MWh,666,671
+2025,More than 100 MWh,0,0
+2025,Total,1128,1172
