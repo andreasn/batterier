@@ -72,6 +72,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--charge);outline-off
 .notes{border-top:1px solid var(--rule);margin-top:3.5rem;padding-top:1.5rem;color:var(--ink-soft);font-size:.95rem}
 .notes p{max-width:68ch}
 .notes h2{color:var(--ink);font-size:1.35rem;margin-top:0}
+.years td:first-child{white-space:nowrap}
+@media (max-width:520px){.years td,.years th{white-space:normal}}
+.years td:last-child,.years th:last-child{text-align:left;white-space:normal;color:var(--ink-soft)}
+.years tbody tr:last-child td{border-bottom:1px solid var(--rule)}
+.est{margin-top:1rem;color:var(--ink-soft);font-size:.95rem}
+.est p{max-width:68ch;margin-bottom:.75rem}
+.est strong{color:var(--ink);font-weight:500}
+.est p:target{background:color-mix(in srgb,var(--charge) 22%,transparent);border-radius:3px}
 footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
 </style>
 </head>
@@ -106,12 +114,29 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
     <tfoot></tfoot>
   </table>
 
+  <h2 id="years">Year by year</h2>
+  <p>Official statistics start in 2024. For the years around them, the table uses industry estimates, marked with an asterisk. Estimates may define batteries differently from Statistics Sweden, so compare them with care.</p>
+  <table class="sizes years">
+    <thead><tr><th scope="col">Year</th><th scope="col">Power (MW)</th><th scope="col">Energy (MWh)</th><th scope="col">Source</th></tr></thead>
+    <tbody>
+      <tr><td>2023</td><td>≈ 80*</td><td>≈ 80*</td><td><a href="#est-2023">Estimate, see note</a></td></tr>
+      <tr><td>2024</td><td>551</td><td>567</td><td>Statistics Sweden</td></tr>
+      <tr><td>2025</td><td>1,128</td><td>1,172</td><td>Statistics Sweden</td></tr>
+      <tr><td>2026, so far</td><td>≈ 1,200–1,300*</td><td>Not available</td><td><a href="#est-2026">Estimate, see note</a></td></tr>
+    </tbody>
+  </table>
+  <div class="est">
+    <p>* Estimated values.</p>
+    <p id="est-2023"><strong>2023:</strong> Ellevio reported about 80 MW of batteries in Svenska kraftnät's balancing markets at the start of 2024 (<a href="https://marketnews.com/power-ellevio-eyes-80mw-bess-park-in-sweden-for-2025">MNI, 2024</a>). This counts only batteries in those markets. Solarplaza gives a similar figure of about 80 MW (<a href="https://www.solarplaza.com/resource/13404/data-analysis-top-20-battery-energy-storage-projects-sweden-2025/">Solarplaza, 2025</a>). The MWh value is derived, not reported: it assumes the one-hour batteries that were typical in Sweden at the time (<a href="https://energy-storage.news/neoen-and-nidec-start-building-swedens-largest-bess">Energy-Storage.news, 2024</a>).</p>
+    <p id="est-2026"><strong>2026:</strong> Ingrid's strategy chief put large-scale battery capacity at 1.2 GW in June 2026 (<a href="https://www.realtid.se/it-tech/elnatets-schweizerkniv-batterier-tar-plats-i-svenska-elsystemet/">Realtid, 2026</a>). A 2026 Chalmers thesis mapped 89 operating projects above 1 MW totalling about 1,300 MW (<a href="https://odr.chalmers.se/items/d072006b-bb76-442c-9983-21c4754c6d2a">Crafoord &amp; Grundberg, 2026</a>). Both count only larger batteries, so the full figure is likely higher. Neither gives a total in MWh.</p>
+  </div>
+
   <section class="notes">
     <h2>About the numbers</h2>
     <p>The figures come from the table <em>Grid connected batteries by storage capacity</em> (TAB6631), published by Statistics Sweden for the Swedish Energy Agency and last updated 8 October 2026. Size classes group batteries by how much energy each one stores.</p>
     <p>Statistics Sweden notes that both power and storage capacity are likely underreported, since this is a new and fast-growing area. Treat the totals as a minimum. Class values may not add up to the total because of rounding.</p>
     <p>The statistics do not name individual sites. Batteries that came online in 2026, such as the 70 MW / 160 MWh park in Ånge, are not included yet.</p>
-    <p><a href="data/scb-tab6631.csv" download>Download the data (CSV)</a> or <a href="https://www.statistikdatabasen.scb.se/goto/en/ssd/Batterier">Open the table at Statistics Sweden</a></p>
+    <p><a href="data/scb-tab6631.csv" download>Download the official data (CSV)</a>, <a href="data/yearly.csv" download>download the year-by-year table (CSV)</a> or <a href="https://www.statistikdatabasen.scb.se/goto/en/ssd/Batterier">Open the table at Statistics Sweden</a></p>
   </section>
   <footer>Source: Statistics Sweden (SCB) and the Swedish Energy Agency, table TAB6631.</footer>
 </main>

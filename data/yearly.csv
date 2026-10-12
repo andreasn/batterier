@@ -1,0 +1,5 @@
+year,power_mw,energy_mwh,estimated,source,note
+2023,80,80,yes,"Ellevio via MNI (2024); Solarplaza (2025)","~80 MW in balancing markets at start of 2024; MWh assumes ~1-hour batteries (Energy-Storage.news 2024)"
+2024,551,567,no,"Statistics Sweden TAB6631",
+2025,1128,1172,no,"Statistics Sweden TAB6631",
+2026,1200-1300,,yes,"Ingrid via Realtid (June 2026); Chalmers thesis (2026)","Large batteries only; no MWh total published"
