@@ -60,22 +60,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--charge);outline-off
 .sizes thead th{font-weight:500;color:var(--ink-soft);font-size:.95rem}
 .sizes tbody tr:last-child td{border-bottom:2px solid var(--ink);}
 .sizes tfoot td{font-weight:500;border-bottom:none}
-.sizes .bar{width:34%}
-.mini{display:block;height:.6rem;border-radius:2px;margin:.2rem 0}
-.mini.p{background:var(--past)}.mini.c{background:var(--charge)}
 .up{color:var(--ink)}
 .switch{display:inline-flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-top:.25rem}
 .switch button{font:500 .95rem Barlow,sans-serif;background:none;color:var(--ink);border:0;padding:.4rem .9rem;cursor:pointer}
 .switch button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
-@media (max-width:520px){.sizes .bar{display:none}.sizes th,.sizes td{padding:.55rem .3rem;font-size:.95rem}}
+@media (max-width:520px){.sizes th,.sizes td{padding:.55rem .3rem;font-size:.9rem}.tablewrap .sizes{min-width:0}.sizes thead th,.sizes .est-val{white-space:normal}.sizes th:nth-child(6),.sizes td:nth-child(6){display:none}}
 
 .notes{border-top:1px solid var(--rule);margin-top:3.5rem;padding-top:1.5rem;color:var(--ink-soft);font-size:.95rem}
 .notes p{max-width:68ch}
 .notes h2{color:var(--ink);font-size:1.35rem;margin-top:0}
-.years td:first-child{white-space:nowrap}
-@media (max-width:520px){.years td,.years th{white-space:normal}}
-.years td:last-child,.years th:last-child{text-align:left;white-space:normal;color:var(--ink-soft)}
-.years tbody tr:last-child td{border-bottom:1px solid var(--rule)}
+.tablewrap{overflow-x:auto;margin-top:1rem}
+.tablewrap .sizes{margin-top:0}
+@media (min-width:521px){.tablewrap .sizes{min-width:34rem}}
+.sizes .est-val{color:var(--ink-soft);font-weight:400}
+.sizes .est-val a{color:inherit}
 .est{margin-top:1rem;color:var(--ink-soft);font-size:.95rem}
 .est p{max-width:68ch;margin-bottom:.75rem}
 .est strong{color:var(--ink);font-weight:500}
@@ -104,27 +102,18 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
 
   <h2>Where the growth came from</h2>
   <p>Batteries holding more than 10 MWh each — mostly the large parks built to balance the grid — went from 280 MW to 666 MW. No single battery in the statistics held more than 100 MWh by the end of 2025.</p>
+  <p>Official statistics, with the breakdown by battery size, exist only for 2024 and 2025. The 2023 and 2026 totals are industry estimates, marked with an asterisk. They may define batteries differently from Statistics Sweden, so compare them with care.</p>
   <div class="switch" role="group" aria-label="Show values as">
     <button type="button" data-m="power_mw" aria-pressed="true">Power (MW)</button>
     <button type="button" data-m="energy_mwh" aria-pressed="false">Energy (MWh)</button>
   </div>
+  <div class="tablewrap">
   <table class="sizes" id="sizes">
-    <thead><tr><th scope="col">Battery size</th><th scope="col">2024</th><th scope="col">2025</th><th scope="col">Change</th><th scope="col" class="bar"><span class="visually-hidden">Comparison</span></th></tr></thead>
+    <thead><tr><th scope="col" id="unit-head">Battery size</th><th scope="col">2023</th><th scope="col">2024</th><th scope="col">2025</th><th scope="col">2026, so far</th><th scope="col">Change 2024–25</th></tr></thead>
     <tbody></tbody>
     <tfoot></tfoot>
   </table>
-
-  <h2 id="years">Year by year</h2>
-  <p>Official statistics start in 2024. For the years around them, the table uses industry estimates, marked with an asterisk. Estimates may define batteries differently from Statistics Sweden, so compare them with care.</p>
-  <table class="sizes years">
-    <thead><tr><th scope="col">Year</th><th scope="col">Power (MW)</th><th scope="col">Energy (MWh)</th><th scope="col">Source</th></tr></thead>
-    <tbody>
-      <tr><td>2023</td><td>≈ 80*</td><td>≈ 80*</td><td><a href="#est-2023">Estimate, see note</a></td></tr>
-      <tr><td>2024</td><td>551</td><td>567</td><td>Statistics Sweden</td></tr>
-      <tr><td>2025</td><td>1,128</td><td>1,172</td><td>Statistics Sweden</td></tr>
-      <tr><td>2026, so far</td><td>≈ 1,200–1,300*</td><td>Not available</td><td><a href="#est-2026">Estimate, see note</a></td></tr>
-    </tbody>
-  </table>
+  </div>
   <div class="est">
     <p>* Estimated values.</p>
     <p id="est-2023"><strong>2023:</strong> Ellevio reported about 80 MW of batteries in Svenska kraftnät's balancing markets at the start of 2024 (<a href="https://marketnews.com/power-ellevio-eyes-80mw-bess-park-in-sweden-for-2025">MNI, 2024</a>). This counts only batteries in those markets. Solarplaza gives a similar figure of about 80 MW (<a href="https://www.solarplaza.com/resource/13404/data-analysis-top-20-battery-energy-storage-projects-sweden-2025/">Solarplaza, 2025</a>). The MWh value is derived, not reported: it assumes the one-hour batteries that were typical in Sweden at the time (<a href="https://energy-storage.news/neoen-and-nidec-start-building-swedens-largest-bess">Energy-Storage.news, 2024</a>).</p>
@@ -136,7 +125,7 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
     <p>The figures come from the table <em>Grid connected batteries by storage capacity</em> (TAB6631), published by Statistics Sweden for the Swedish Energy Agency and last updated 8 October 2026. Size classes group batteries by how much energy each one stores.</p>
     <p>Statistics Sweden notes that both power and storage capacity are likely underreported, since this is a new and fast-growing area. Treat the totals as a minimum. Class values may not add up to the total because of rounding.</p>
     <p>The statistics do not name individual sites. Batteries that came online in 2026, such as the 70 MW / 160 MWh park in Ånge, are not included yet.</p>
-    <p><a href="data/scb-tab6631.csv" download>Download the official data (CSV)</a>, <a href="data/yearly.csv" download>download the year-by-year table (CSV)</a> or <a href="https://www.statistikdatabasen.scb.se/goto/en/ssd/Batterier">Open the table at Statistics Sweden</a></p>
+    <p><a href="data/scb-tab6631.csv" download>Download the official data (CSV)</a>, <a href="data/yearly.csv" download>download the yearly totals with estimates (CSV)</a> or <a href="https://www.statistikdatabasen.scb.se/goto/en/ssd/Batterier">Open the table at Statistics Sweden</a></p>
   </section>
   <footer>Source: Statistics Sweden (SCB) and the Swedish Energy Agency, table TAB6631.</footer>
 </main>
@@ -177,23 +166,37 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
   }
 
   function pct(a,b){ if(!a) return b ? 'new' : '—'; const r=(b-a)/a*100; return (r>=0?'+':'') + Math.round(r) + '%'; }
+  // Estimated totals for years without official statistics (see notes on the page).
+  const EST = {
+    '2023': {power_mw:'≈\u00a080*', energy_mwh:'≈\u00a080*', note:'#est-2023'},
+    '2026': {power_mw:'≈\u00a01,200–\u200b1,300*', energy_mwh:'Not available', note:'#est-2026'}
+  };
+  function estCell(td, y, m){
+    const v = EST[y][m];
+    if(v.endsWith('*')){ const a=document.createElement('a'); a.href=EST[y].note; a.textContent=v; td.appendChild(a); }
+    else td.textContent = v;
+    td.className='est-val';
+  }
   function drawTable(m){
     const i = idx[m];
-    const max = Math.max(...CLASSES.map(c=>Math.max(D['2024'][c][i], D['2025'][c][i])));
+    document.getElementById('unit-head').textContent = 'Battery size (' + unit[m] + ')';
     const tb = document.querySelector('#sizes tbody'); tb.innerHTML='';
     CLASSES.forEach(c=>{
       const a=D['2024'][c][i], b=D['2025'][c][i];
-      const tr=document.createElement('tr');
-      tr.innerHTML = '<td></td><td></td><td></td><td></td><td class="bar"><span class="mini p"></span><span class="mini c"></span></td>';
-      tr.cells[0].textContent=c; tr.cells[1].textContent=nf.format(a)+' '+unit[m];
-      tr.cells[2].textContent=nf.format(b)+' '+unit[m]; tr.cells[3].textContent=pct(a,b);
-      const bars=tr.querySelectorAll('.mini'); bars[0].style.width=(max? a/max*100:0)+'%'; bars[1].style.width=(max? b/max*100:0)+'%';
-      tb.appendChild(tr);
+      const tr=tb.insertRow();
+      ['','','','','',''].forEach(()=>tr.insertCell());
+      tr.cells[0].textContent=c;
+      tr.cells[2].textContent=nf.format(a); tr.cells[3].textContent=nf.format(b);
+      tr.cells[5].textContent=pct(a,b);
     });
     const a=D['2024'].Total[i], b=D['2025'].Total[i];
-    document.querySelector('#sizes tfoot').innerHTML='<tr><td>Total</td><td></td><td></td><td></td><td class="bar"></td></tr>';
-    const f=document.querySelector('#sizes tfoot tr');
-    f.cells[1].textContent=nf.format(a)+' '+unit[m]; f.cells[2].textContent=nf.format(b)+' '+unit[m]; f.cells[3].textContent=pct(a,b);
+    const tf=document.querySelector('#sizes tfoot'); tf.innerHTML='';
+    const f=tf.insertRow(); ['','','','','',''].forEach(()=>f.insertCell());
+    f.cells[0].textContent='Total';
+    estCell(f.cells[1],'2023',m);
+    f.cells[2].textContent=nf.format(a); f.cells[3].textContent=nf.format(b);
+    estCell(f.cells[4],'2026',m);
+    f.cells[5].textContent=pct(a,b);
   }
 
   document.querySelectorAll('.switch button').forEach(b=>b.addEventListener('click',()=>{
