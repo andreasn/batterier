@@ -22,10 +22,9 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.55 Barlow,system-ui,sans-serif}
 main{max-width:46rem;margin:0 auto;padding:3.5rem 1rem 4rem}
 h1,h2,.num{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:600;letter-spacing:-.005em}
-h1{font-size:clamp(2.4rem,7vw,4rem);line-height:1;margin:0 0 1rem}
+h1{font-size:clamp(2.4rem,7vw,4rem);line-height:1;margin:0 0 2rem}
 h2{font-size:1.75rem;line-height:1.1;margin:3.5rem 0 .5rem}
 p{margin:0 0 1rem;max-width:62ch}
-.lede{font-size:1.2rem;color:var(--ink-soft);max-width:54ch}
 a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:1px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--charge);outline-offset:3px;border-radius:2px}
 
@@ -61,12 +60,6 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
 <body>
 <main>
   <h1>Sweden's grid batteries</h1>
-  <p class="lede" id="lede">Grid-connected batteries in Sweden grew from 551 MW to 1,128 MW in one year, according to official statistics. Most of the growth came from large battery parks.</p>
-
-
-  <h2>Where the growth came from</h2>
-  <p>Batteries holding more than 10 MWh each — mostly the large parks built to balance the grid — went from 280 MW to 666 MW. No single battery in the statistics held more than 100 MWh by the end of 2025.</p>
-  <p>Official statistics, with the breakdown by battery size, exist only for 2024 and 2025. The 2023 and 2026 totals are industry estimates, marked with an asterisk. They may define batteries differently from Statistics Sweden, so compare them with care.</p>
   <div class="switch" role="group" aria-label="Show values as">
     <button type="button" data-m="power_mw" aria-pressed="true">Power (MW)</button>
     <button type="button" data-m="energy_mwh" aria-pressed="false">Energy (MWh)</button>
