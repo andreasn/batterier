@@ -1,19 +1,31 @@
 # Sweden's grid batteries
 
-A one-page site showing official statistics on grid-connected battery storage in Sweden for 2024 and 2025.
+A one-page site listing large battery storage projects in Sweden: who is building them, how big they are, where they are and when they go online.
 
 **Live site:** https://andreasn.github.io/sweden-battery-storage/
 
 ## Data
 
-The data comes from table TAB6631, *Grid connected batteries by storage capacity*. Statistics Sweden (SCB) publishes it for the Swedish Energy Agency, and it was last updated on 8 October 2026.
+[`data/projects.csv`](data/projects.csv) has one row per project, with these columns:
 
-- [Open the table at Statistics Sweden](https://www.statistikdatabasen.scb.se/goto/en/ssd/Batterier)
-- [`data/scb-tab6631.csv`](data/scb-tab6631.csv) is a copy of the official figures used on the page.
-- [`data/yearly.csv`](data/yearly.csv) is the year-by-year table. It combines the official 2024–2025 figures with industry estimates for 2023 and 2026, which are flagged and sourced on the page.
+| Column | Meaning |
+|---|---|
+| `project` | Project or site name |
+| `developer` | Developer and/or owner |
+| `location` | Municipality or nearest town, and county |
+| `price_area` | Electricity price area (SE1–SE4), only where a source states it |
+| `power_mw` | Rated power in MW, blank if not published |
+| `energy_mwh` | Storage capacity in MWh, blank if not published |
+| `status` | `Operational`, `Under construction`, `Planned` or `Permitting` |
+| `online` | Actual or planned date the battery went or goes online |
+| `date_reported` | Date of the main source |
+| `source` | Link to the main source |
+| `notes` | Other details, including conflicting figures between sources |
 
-Statistics Sweden notes that the figures are likely underreported.
+Each project is checked against at least one public source: a company press release, an annual report, a project page or a news article. Where sources disagree, the most recent figure is used and the disagreement is noted.
+
+The list is not complete. Green Power Sweden counted 130 approved battery parks totalling about 5,100 MW at the end of 2025, most without a published developer or size.
 
 ## Updating
 
-The figures are also embedded in `index.html`, in the `<script id="data">` block. When SCB publishes a new year, update both that block and the CSV.
+The data is also embedded in `index.html`, in the `<script id="data">` block. When adding or changing a project, update both that block and the CSV.
