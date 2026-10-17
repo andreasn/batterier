@@ -22,7 +22,7 @@ A one-page site listing grid-scale battery storage projects in Sweden, from abou
 | `source` | Link to the main source |
 | `notes` | Other details, including conflicting figures between sources |
 
-Each project is checked against at least one public source: a company press release, an annual report, a project page or a news article. Where sources disagree, the most recent figure is used and the disagreement is noted.
+Planned projects need an investment decision, a signed construction contract or a building permit; projects with only an announcement, land agreement or letter of intent are not listed. Each project is checked against at least one public source: a company press release, an annual report, a project page or a news article. Where sources disagree, the most recent figure is used and the disagreement is noted.
 
 On the site, a size filter splits projects at 10 MWh (by MWh, or MW where MWh is not published), matching the size classes Statistics Sweden uses.
 
