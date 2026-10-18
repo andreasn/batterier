@@ -13,7 +13,7 @@ A one-page site listing grid-scale battery storage projects in Sweden, from abou
 | `project` | Project or site name |
 | `developer` | Developer and/or owner |
 | `location` | Municipality or nearest town, and county |
-| `price_area` | Electricity price area (SE1–SE4), only where a source states it |
+| `price_area` | Electricity price area (SE1–SE4): from a source where stated, otherwise worked out from the location; blank if the location is unknown |
 | `power_mw` | Rated power in MW, blank if not published |
 | `energy_mwh` | Storage capacity in MWh, blank if not published |
 | `status` | `Operational`, `Under construction`, `Planned` or `Permitting` |
