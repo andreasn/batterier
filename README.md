@@ -2,7 +2,7 @@
 
 A one-page site listing grid-scale battery storage projects in Sweden, from about 1 MW upward: who is building them, how big they are, where they are and when they go online. Home batteries and smaller units are not included.
 
-**Live site:** https://andreasn.github.io/batterier/
+**Live site:** https://andreasn.github.io/batterier/ (Swedish, default) · https://andreasn.github.io/batterier/en/ (English)
 
 ## Data
 
