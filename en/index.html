@@ -22,7 +22,7 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.55 Barlow,system-ui,sans-serif}
-main{max-width:52rem;margin:0 auto;padding:3.5rem 1rem 4rem}
+main{max-width:52rem;margin:0 auto;padding:2.5rem 1rem 4rem}
 h1,h2,.num{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:600;letter-spacing:-.005em}
 h1{font-size:clamp(2.4rem,7vw,4rem);line-height:1;margin:0 0 2rem}
 h2{font-size:1.75rem;line-height:1.1;margin:3.5rem 0 .5rem}
@@ -73,11 +73,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--charge);outline-off
 .notes p{max-width:68ch}
 .notes h2{color:var(--ink);font-size:1.35rem;margin-top:0}
 footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
-.lang{display:flex;justify-content:flex-end;gap:.75rem;font-size:.95rem;margin:-2rem 0 1.5rem}
+.hero{max-width:75rem;margin:0 auto}
+.hero img{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:cover}
+@media (max-width:560px){.hero img{aspect-ratio:2/1}}
+.lang{display:flex;justify-content:flex-end;gap:.75rem;font-size:.95rem;margin:-1.25rem 0 1.25rem}
 .lang [aria-current]{font-weight:500;text-decoration:none}
 </style>
 </head>
 <body>
+<div class="hero"><img src="../img/hero.jpg" alt="Rows of white battery containers in a fenced yard beside forest and a lake" width="1200" height="400"></div>
 <main>
   <nav class="lang" aria-label="Language"><a href="../" hreflang="sv" lang="sv">Svenska</a><a aria-current="page">English</a></nav>
   <h1>Sweden's grid batteries</h1>
