@@ -199,10 +199,15 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
       const add = (k,v)=>{ if(v === '' || v == null) return; const dt=document.createElement('dt'); dt.textContent=k; const dd=document.createElement('dd'); if(v instanceof Node) dd.appendChild(v); else dd.textContent=v; dl.append(dt,dd); };
       add(L.developer, p.developer);
       if(loc.coords){
+        const parts = loc.coords.split(';');
+        const wrap = document.createElement('span');
         const ca = document.createElement('a');
         ca.href = 'https://www.google.com/maps/search/?api=1&query=' + loc.lat + ',' + loc.lon;
-        ca.textContent = loc.coords; ca.rel = 'noopener';
-        add(L.coords, ca);
+        ca.textContent = parts[0].trim(); ca.target = '_blank'; ca.rel = 'noopener';
+        ca.title = 'Google Maps';
+        wrap.appendChild(ca);
+        if(parts.length > 1) wrap.appendChild(document.createTextNode(' (' + parts.slice(1).join(';').trim() + ')'));
+        add(L.coords, wrap);
       }
       add(L.online, p.online);
       add(L.price_area, p.price_area);
