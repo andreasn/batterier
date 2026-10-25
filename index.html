@@ -126,7 +126,8 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
 <script>
 (function(){
   const L = JSON.parse(document.getElementById('tr').textContent);
-  const P = JSON.parse(document.getElementById('data').textContent).map((p,i)=>Object.assign({}, p, L.rows ? L.rows[i] : {}));
+  const slugify = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const P = JSON.parse(document.getElementById('data').textContent).map((p,i)=>Object.assign({slug: slugify(p.project)}, p, L.rows ? L.rows[i] : {}));
   const STATUSES = L.statuses;
   const nf = new Intl.NumberFormat(L.lang,{maximumFractionDigits:1});
   const num = v => (v === '' || v == null) ? null : Number(v);
@@ -187,7 +188,7 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
     th.appendChild(meta); g.appendChild(th);
 
     P.filter(p=>p.status===s).forEach(p=>{
-      const tr = body.insertRow(); tr.className = 'proj';
+      const tr = body.insertRow(); tr.className = 'proj'; tr.id = p.slug;
       const e = num(p.energy_mwh), w = num(p.power_mw);
       tr.dataset.z = (e != null ? e <= 10 : (w != null && w <= 10)) ? 'small' : 'large';
       tr.dataset.mw = w || 0;
@@ -254,6 +255,15 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
     apply();
   })));
   apply();
+  // Deep link: #project-slug opens that project's details and scrolls to it.
+  function openHash(){
+    const h = decodeURIComponent(location.hash.slice(1)); if(!h) return;
+    const tr = document.getElementById(h); if(!tr || !tr._detail) return;
+    const t = tr.closest('tbody'); if(t) t.hidden = false;
+    tr.hidden = false; tr._detail.hidden = false; tr._btn.setAttribute('aria-expanded','true');
+    tr.scrollIntoView({block:'start'});
+  }
+  window.addEventListener('hashchange', openHash); openHash();
 })();
 </script>
 </body>
