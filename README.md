@@ -21,6 +21,8 @@ A one-page site listing grid-scale battery storage projects in Sweden, from abou
 | `date_reported` | Date of the main source |
 | `source` | Link to the main source |
 | `notes` | Other details, including conflicting figures between sources |
+| `link_labels` | Labels of other sources cited in `notes` (e.g. `SVT, 7 Oct 2024`), separated by `; ` |
+| `link_urls` | Links for those sources, in the same order, separated by `; ` |
 
 Planned projects need an investment decision, a signed construction contract or a building permit; projects with only an announcement, land agreement or letter of intent are not listed. Each project is checked against at least one public source: a company press release, an annual report, a project page or a news article. Where sources disagree, the most recent figure is used and the disagreement is noted.
 
@@ -30,4 +32,4 @@ The list is not complete. Green Power Sweden counted 130 approved battery parks 
 
 ## Updating
 
-The data is also embedded in `index.html`, in the `<script id="data">` block. When adding or changing a project, update both that block and the CSV.
+The data is also embedded in `index.html` and `en/index.html`, in the `<script id="data">` block. When adding or changing a project, update both pages and the CSV. In the pages, `link_labels` and `link_urls` are a single `links` list of `[label, url]` pairs; each label must appear word for word in `notes`, where the site turns it into a link.
