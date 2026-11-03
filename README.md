@@ -33,3 +33,5 @@ The list is not complete. Green Power Sweden counted 130 approved battery parks 
 ## Updating
 
 The data is also embedded in `index.html` and `en/index.html`, in the `<script id="data">` block. When adding or changing a project, update both pages and the CSV. In the pages, `link_labels` and `link_urls` are a single `links` list of `[label, url]` pairs; each label must appear word for word in `notes`, where the site turns it into a link.
+
+The Swedish page (`index.html`) also has a `<script id="tr">` block with the Swedish text. Its `rows` object is keyed by the English `project` name and overrides `project`, `online`, `developer`, `location`, `notes` and `links` for that project; fields left out fall back to the English data. When adding or changing a project, add or update its Swedish row too (Swedish link labels must appear word for word in the Swedish `notes`). If you rename a project, rename its key in `rows` as well.

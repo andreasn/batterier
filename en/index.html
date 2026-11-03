@@ -127,7 +127,7 @@ footer{margin-top:2rem;color:var(--ink-soft);font-size:.9rem}
 (function(){
   const L = JSON.parse(document.getElementById('tr').textContent);
   const slugify = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-  const P = JSON.parse(document.getElementById('data').textContent).map((p,i)=>Object.assign({slug: slugify(p.project)}, p, L.rows ? L.rows[i] : {}));
+  const P = JSON.parse(document.getElementById('data').textContent).map((p,i)=>Object.assign({slug: slugify(p.project)}, p, L.rows ? (L.rows[p.project] || {}) : {}));
   const STATUSES = L.statuses;
   const nf = new Intl.NumberFormat(L.lang,{maximumFractionDigits:1});
   const num = v => (v === '' || v == null) ? null : Number(v);
